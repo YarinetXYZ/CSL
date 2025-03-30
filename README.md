@@ -21,6 +21,7 @@
 ## Network Configuration
 <details>
 <summary>View Detailed Information</summary>
+	
 ### vNet-YRN-SOC-LAB (10.55.0.0/16)
 	SUBNET-SDCI (10.55.5.0/24)
 		- Ubuntu Linux Server (10.55.5.1)
@@ -41,6 +42,7 @@
 <details>
 <summary>View Detailed Information</summary>
 
+###Technical Consideration
 SUBNET-SDCI indirectly exposed to internet via SUBNET-MI, attack vector exists by allowing SUBNET-MI internet access and thus option to pivot into SUBNET-DCI. Risk Mitigation includes preventing all unnecessary traffic, attempted to include NSG, but was unable to resolve network issues to W10PC (Domain Enrolled), only allowed following traffic.
 
 Type; TCP, UDP, ICMP
