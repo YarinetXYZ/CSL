@@ -73,7 +73,7 @@ Port; 53-DNS, 88-KERBEROS, 135-RPC-ENDPOINT-MAPPER, 138-NETBIOS, 139-NETBIOS, 38
 |----------|----------------|---------|------------|-------|---------------|------|----------|--------|
 | 300      | Deny-SDCI-To-SEI | IPs     | 10.55.5.X/24 | IPs   | 10.55.15.X/24    | Any  | Any      | Deny   |
 
-### Subnet-SEI (Allow Slpunk Management Access) (Inbound Rule)
+### SOC-ANALYST-SPLUNK (Allow Slpunk Management Access) (Inbound Rule)
 | Priority | Rule Name        | Source  | Source IPs  | Dest. | Dest. IPs      | Port | Protocol | Action |
 |----------|----------------|---------|------------|-------|---------------|------|----------|--------|
 | 350      | Allow-Splunk-MGR | IPs     | 10.55.10.9 | IPs   | 10.55.5.3    | 8000  | Any      | Allow   |
