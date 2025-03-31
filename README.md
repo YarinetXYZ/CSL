@@ -36,6 +36,13 @@
 		- Wazuh Instance (10.55.15.1)
 		- Shuffle Instance (10.55.15.2)
 		- TheHive Instance (10.55.15.3)
+
+   	NAT-GATEWAY-MI
+    		- 172.190.154.106 (Public IP Address for All 3 Machines)
+    	NAT-GATEWAY-SEI
+     		- 172.172.175.82 (Wazuh)
+		- 20.83.145.60 (Shuffle)
+		- 52.249.220.86 (TheHive)
 </details>
 
 ## Network Security Groups
