@@ -24,18 +24,18 @@
 	
 ### vNet-YRN-SOC-LAB (10.55.0.0/16)
 	SUBNET-SDCI (10.55.5.0/24)
-		- Ubuntu Linux Server (10.55.5.1)
-		- Windows 2022 Server (10.55.5.2)
+		- Ubuntu Linux Server (10.55.5.3)
+		- Windows 2022 Server (10.55.5.6)
 
 	SUBNET-MI (10.55.10.0/24)
-		- Kali Attack Box (10.55.10.1)
-		- Windows 10 PC (10.55.10.2)
-		- SOC Analyst PC (10.55.10.3)
+		- Kali Attack Box (10.55.10.3)
+		- Windows 10 PC (10.55.10.6)
+		- SOC Analyst PC (10.55.10.9)
 
 	SUBNET-SEI (10.55.15.0/24)
-		- Wazuh Instance (10.55.15.1)
-		- Shuffle Instance (10.55.15.2)
-		- TheHive Instance (10.55.15.3)
+		- Wazuh Instance (10.55.15.3)
+		- Shuffle Instance (10.55.15.6)
+		- TheHive Instance (10.55.15.9)
 
    	NAT-GATEWAY-MI
 		- 172.190.154.106 (Public IP Address for All 3 Machines)
@@ -72,6 +72,11 @@ Port; 53-DNS, 88-KERBEROS, 135-RPC-ENDPOINT-MAPPER, 138-NETBIOS, 139-NETBIOS, 38
 | Priority | Rule Name        | Source  | Source IPs  | Dest. | Dest. IPs      | Port | Protocol | Action |
 |----------|----------------|---------|------------|-------|---------------|------|----------|--------|
 | 300      | Deny-SDCI-To-SEI | IPs     | 10.55.5.X/24 | IPs   | 10.55.15.X/24    | Any  | Any      | Deny   |
+
+### Subnet-SEI (Allow Slpunk Management Access) (Inbound Rule)
+| Priority | Rule Name        | Source  | Source IPs  | Dest. | Dest. IPs      | Port | Protocol | Action |
+|----------|----------------|---------|------------|-------|---------------|------|----------|--------|
+| 350      | Allow-Splunk-MGR | IPs     | 10.55.10.9 | IPs   | 10.55.5.3    | 8000  | Any      | Allow   |
 </details>
 
 
