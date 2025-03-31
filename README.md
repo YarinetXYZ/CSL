@@ -171,7 +171,72 @@ Windows Defender Firewall (Outbound Rule)
 <details>
 <summary>View Detailed Information</summary>
 	
-This lab was initially completed without any intention to complete a writeup of how I undertook the process, retrospectively working off of old notes, thus a work in progress.
+## Wazuh Deployment & Configuration
+    Ubuntu Server 24.04 LTS - x64 Gen2
+    sudo apt-get update 
+    sudo apt-get upgrade
+    curl -sO https://packages.wazuh.com/4.10.1/wazuh-install.sh && sudo bash ./wazuh-install.sh -a
+    sudo tar -xvf wazuh-install-files.tar
+
+## TheHive Deployment & Configuration
+Dependencies - (Java, Cassandra, ElasticSearch)
+    
+    Ubuntu Server 24.04 LTS - x64 Gen2
+    sudo apt-get update 
+    sudo apt-get upgrade
+
+### Java 
+
+Install 
+
+    apt install wget gnupg apt-transport-https git ca-certificates ca-certificates-java curl  software-properties-common python3-pip lsb-release    
+    wget -qO- https://apt.corretto.aws/corretto.key | sudo gpg --dearmor  -o /usr/share/keyrings/corretto.gpg
+    echo "deb [signed-by=/usr/share/keyrings/corretto.gpg] https://apt.corretto.aws stable main" |  sudo tee -a /etc/apt/sources.list.d/corretto.sources.list
+    sudo apt update
+    sudo apt install java-common java-11-amazon-corretto-jdk
+    echo JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto" | sudo tee -a /etc/environment 
+    export JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto"
+
+### Cassandra 
+
+Install 
+
+    wget -qO -  https://downloads.apache.org/cassandra/KEYS | sudo gpg --dearmor  -o /usr/share/keyrings/cassandra-archive.gpg
+    echo "deb [signed-by=/usr/share/keyrings/cassandra-archive.gpg] https://debian.cassandra.apache.org 40x main" |  sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+    sudo apt update
+    sudo apt install cassandra
+
+Configuration 
+
+    Cluster_Name = YRN-SOC 
+    Listen_Address = 52.249.220.86
+    RPC_Address = 52.249.220.86
+    Seeds = 52.249.220.86:7000
+    systemctl stop cassandra.service
+    rm -rf /var/lib/cassandra/*
+    systemctl start cassandra.service
+
+### ElasticSearch 
+Required to uncomment fields inside configuration file 
+Install
+
+    wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch |  sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+    sudo apt-get install apt-transport-https
+    echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" |  sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+    sudo apt update
+    sudo apt install elasticsearch
+
+Configuration 
+
+    Cluster.Name: YRN-SOC
+    Node.Name: Node-1
+    Network.Host 52.249.220.86
+    Http>port: 9200
+    Cluster.Initial_Master_Nodes: ["Node-1"]
+    systemctl start ElasticSearch
+    systemctl enable ElasticSearch
+    ls -la /opt/thp
+    chown -R thehive:thehive /opt/thp
 
 </details>
 
