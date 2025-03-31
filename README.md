@@ -172,6 +172,7 @@ Windows Defender Firewall (Outbound Rule)
 <summary>View Detailed Information</summary>
 	
 ## Wazuh Deployment & Configuration
+
     Ubuntu Server 24.04 LTS - x64 Gen2
     sudo apt-get update 
     sudo apt-get upgrade
@@ -186,7 +187,6 @@ Dependencies - (Java, Cassandra, ElasticSearch)
     sudo apt-get upgrade
 
 ### Java 
-
 Install 
 
     apt install wget gnupg apt-transport-https git ca-certificates ca-certificates-java curl  software-properties-common python3-pip lsb-release    
@@ -198,7 +198,6 @@ Install
     export JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto"
 
 ### Cassandra 
-
 Install 
 
     wget -qO -  https://downloads.apache.org/cassandra/KEYS | sudo gpg --dearmor  -o /usr/share/keyrings/cassandra-archive.gpg
@@ -235,8 +234,16 @@ Configuration
     Cluster.Initial_Master_Nodes: ["Node-1"]
     systemctl start ElasticSearch
     systemctl enable ElasticSearch
-    ls -la /opt/thp
+
+### TheHive 
+Configuration
+
     chown -R thehive:thehive /opt/thp
+    nano /etc/thehive/application.conf
+    hostname = ["52.249.220.86"]
+    cluster-name = YRN-SOC
+    application.baseUrl = "http://52.249.220.86:9000"
+    systemctl start thehive  
 
 </details>
 
