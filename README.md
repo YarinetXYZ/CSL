@@ -23,6 +23,9 @@
 <summary>View Detailed Information</summary>
 	
 ### vNet-YRN-SOC-LAB (10.55.0.0/16)
+
+Do not attempt to interact with public IP addresses disclosed in this repository, this infrastructure has since been shutdown and resources reprovisioned. As this lab was built inside Azure they are owned by Microsoft, do so at your own risk.
+
 	SUBNET-SDCI (10.55.5.0/24)
 		- Ubuntu Linux Server (10.55.5.3)
 		- Windows 2022 Server (10.55.5.6)
