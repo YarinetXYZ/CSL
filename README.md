@@ -64,7 +64,7 @@ Port; 53-DNS, 88-KERBEROS, 135-RPC-ENDPOINT-MAPPER, 138-NETBIOS, 139-NETBIOS, 38
 ### Subnet-SDCI (Prevent Internet Access) (Inbound Rule)
 | Priority | Rule Name            | Source | Source IPs | Dest. | Dest. IPs      | Port | Protocol | Action |
 |----------|---------------------|--------|------------|-------|---------------|------|----------|--------|
-| 200      | Deny-Internet-To-SDCI | Any    | Any        | IPs   | Subnet-SDCI   | Any  | Any      | Deny   |
+| 200      | Deny-Internet-To-SDCI | Any    | Any        | IPs   | 10.55.5.X/24   | Any  | Any      | Deny   |
 
 ### Subnet-SDCI (Prevent Subnet-SEI Access) (Inbound Rule)
 | Priority | Rule Name        | Source  | Source IPs  | Dest. | Dest. IPs      | Port | Protocol | Action |
