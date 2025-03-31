@@ -79,6 +79,72 @@ Port; 53-DNS, 88-KERBEROS, 135-RPC-ENDPOINT-MAPPER, 138-NETBIOS, 139-NETBIOS, 38
 | 350      | Allow-Splunk-MGR | IPs     | 10.55.10.9 | IPs   | 10.55.5.3    | 8000  | Any      | Allow   |
 </details>
 
+## Services Deployment
+<details>
+<summary>View Detailed Information</summary>
 
+### Splunk Instance (Indexer & Deployment Server)
+Registered for splunk enterprise trial, downloaded .deb file onto Kali VM, transfered and deployed onto Ubuntu Linux VM. (Before NSG's)
+  
+ 	- sudo apt-get update 
+ 	- sudo apt-get upgrade
+ 	- scp splunk-9.4.1-ddff1c41e5cf-linux-2.6-amd64.deb Yarinet@10.55.5.3:/home/ (OpenSSH Installed on Kali VM)
+ 	- sudo dpkg -i splunk9.4.1-ddff1c41e5cf-linux-2.6-amd64.deb
+ 	- sudo ./splunk start
+ 	- sudo ./splunk enable boot-start
+ 	- systemctl enable splunk
+ 	- systemctl start splunk
+
+### Active Directory Deployment
+
+Deployed Active Directory Domain Services on Windows 2022 server.
+Configured Windows 2022 server as the domain controller (YRN-DC1) & Windows 10 PC enrolled as (YRN-X0Y0Z)
+
+https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite
+
+http://github.com/SwiftOnSecurity/sysmon-config
+
+ 	Navigate to saved directory > Run (Sysmon64.exe) As Administrator
+  	sysmon.exe -accepteula -i sysmonconfig-export.xml (Powershell)
+   	
+Navigate to following directory after Splunk Universal Forwarder is installed, enter the attached logs forwarding, this process is doubling up as will already be present with out SUF setup, last lines are primary concern as they allow for the forwarding of sysmon logs into splunk. 
+	
+ 	C:\Program Files\SpunkUniversalForwarder\etc\local\inputs.conf
+  
+  	[WinEventLog://Application]
+	index = endpoint
+	disabled = false
+
+	[WinEventLog://Security]
+	index = endpoint
+	disabled = false
+
+	[WinEventLog://System]
+	index = endpoint
+	disabled = false
+
+	[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+	index = endpoint
+	disabled = false
+
+	renderXml = true
+	source = XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+	### Splunk Universal Forwarder
+
+Management Portal
+
+	Splunk > Receive Data > Listen on 9997
+	Splunk > Add Data > Local Event Logs (All) (After Universal Forwarder Configured)
+Splunk Universal Forwarder (SUF)
+
+	Download version 9.4.1 MSI File
+	Configure SUF settings (Receiving Indexer) (10.55.5.3) (9997)
+	Configure SUF settings (Deployment Server) (10.55.5.3) (8089)
+	Windows Event Logs (Application Logs, Security Logs, System Logs)
+Windows Defender Firewall (Outbound Rule)
+
+	Splunk-Traffic (TCP) (9997) (Allow)
+
+</details>
 
 
