@@ -151,4 +151,37 @@ Windows Defender Firewall (Outbound Rule)
 
 </details>
 
+## Attack Simulation
+<details>
+<summary>View Detailed Information</summary>
+</details>
 
+## Defense Simulation
+<details>
+<summary>View Detailed Information</summary>
+</details>
+
+## Skills Demonstrated
+<details>
+<summary>View Detailed Information</summary>
+</details>
+
+
+## Wazuh / TheHive / Shuffle
+<details>
+<summary>View Detailed Information</summary>
+	
+This lab was initially completed without any intention to complete a writeup of how I undertook the process, retrospectively working off of old notes, thus a work in progress.
+
+</details>
+
+## Lab Expansion / Progression
+<details>
+<summary>View Detailed Information</summary>
+	
+- Conduct Malware Analysis - Including threat intelligence report, potentially investigating the threat-actor / group behind malware's creation, its infrastructure and how it is being deployed in the wild.
+- It's evident VM's and DC's with minimal configuration are susceptible to a plethora of attacks, developing this lab inspired an interest in system hardening for Active Directory, Windows & Linux Machines. 
+- In conjunction with the aforementioned point, I plan to deploy multiple malware strains and build the appropriate indexing queries that are able to detect or flag Indicators of Compromise (IOCs).
+- This is a flaw that I identified with this lab, as the attacks can be conducted and queries created retrospectively, but highlighted my lack of knowledge surrounding baselines and hardening.
+
+</details>
