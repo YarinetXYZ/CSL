@@ -99,6 +99,7 @@ Registered for splunk enterprise trial, downloaded .deb file onto Kali VM, trans
 
 Deployed Active Directory Domain Services on Windows 2022 server.
 Configured Windows 2022 server as the domain controller (YRN-DC1) & Windows 10 PC enrolled as (YRN-X0Y0Z)
+Replicated the Sysmon installation process on WS2022 and W10 PC, in preparation for Lab expansion (Domain Controller Hardening & Attacks)
 
 https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite
 
