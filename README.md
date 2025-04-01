@@ -110,6 +110,12 @@ http://github.com/SwiftOnSecurity/sysmon-config
 
  	Navigate to saved directory > Run (Sysmon64.exe) As Administrator
   	sysmon.exe -accepteula -i sysmonconfig-export.xml (Powershell)
+
+(Powershell After Wazuh Deployment) 
+
+   	Invoke-WebRequest -uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.0-1.msi -OutFile ${env.tmp}\wazuh-agent; msiexec.exe /i ${env.tmp}\wazuh-agent /q WAZUH_MANAGER='172.172.175.82' WAZUH_AGNET_NAME='YRN-X0Y0Z' WAZUH_REGISTRATION_SERVER='172.172.175.82'
+
+	net start wazuhsvc
    	
 Navigate to following directory after Splunk Universal Forwarder is installed, enter the attached logs forwarding, this process is doubling up as will already be present with out SUF setup, last lines are primary concern as they allow for the forwarding of sysmon logs into splunk. 
 	
